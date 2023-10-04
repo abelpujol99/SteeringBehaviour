@@ -14,8 +14,7 @@ Agent::Agent() : sprite_texture(0),
 				 sprite_num_frames(0),
 	             sprite_w(0),
 	             sprite_h(0),
-	             draw_sprite(false),
-				_modeSelected(1)
+	             draw_sprite(false)
 {
 	steering_behavior = new SteeringBehavior;
 }
@@ -81,40 +80,19 @@ void Agent::setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 void Agent::update(float dtime, SDL_Event *event)
 {
 
-	
-	Vector2D steering_force;
+	//cout << "agent update:" << endl;
 
 	switch (event->type) {
-		case SDL_MOUSEBUTTONDOWN:
-			if (event->button.button == SDL_BUTTON_RIGHT)
-			{
-				_modeSelected = _modeSelected + 1 % 2;
-			}
-		case SDL_KEYDOWN:
-			if (event->key.keysym.scancode == SDL_SCANCODE_SPACE)
-			{
-					draw_sprite = !draw_sprite;
-			}
-		default:
-			break;
+		/* Keyboard & Mouse events */
+	case SDL_KEYDOWN:
+		if (event->key.keysym.scancode == SDL_SCANCODE_SPACE)
+			draw_sprite = !draw_sprite;
+		break;
+	default:
+		break;
 	}
 
-
-	switch (_modeSelected)
-	{
-		case 0:
-			steering_force = this->Behavior()->Seek(this, target, dtime);
-			break;
-
-		case 1:
-			steering_force = this->Behavior()->Flee(this, target, dtime);
-			break;
-
-		default:
-			break;
-	}
-
-	
+	Vector2D steering_force = this->Behavior()->Seek(this, this->getTarget(), dtime);
 
 	Vector2D acceleration = steering_force / mass;
 	velocity = velocity + acceleration * dtime;

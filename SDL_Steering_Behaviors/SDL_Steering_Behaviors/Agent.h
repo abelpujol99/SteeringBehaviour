@@ -31,7 +31,6 @@ private:
 	int sprite_num_frames;
 	int sprite_w;
 	int sprite_h;
-	int _modeSelected;
 
 public:
 	Agent();

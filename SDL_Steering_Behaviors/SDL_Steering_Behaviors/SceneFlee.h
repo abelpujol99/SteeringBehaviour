@@ -15,6 +15,5 @@ public:
 private:
 	std::vector<Agent*> agents;
 	Vector2D target;
-	float _fleeDistance = 20;
 };
 
