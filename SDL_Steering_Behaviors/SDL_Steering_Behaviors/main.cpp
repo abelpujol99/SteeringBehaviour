@@ -3,8 +3,8 @@
 #include <SDL_image.h>
 
 #include "SDL_SimpleApp.h"
-#include "SceneSeek.h"
-#include "SceneFlee.h"
+#include "SoloAgentScene.h"
+#include "MultiAgentScene.h"
 
 
 using namespace std;
@@ -16,7 +16,7 @@ int main(int argc, char ** argv)
 
 	SDL_SimpleApp *app = SDL_SimpleApp::Instance();
 
-	Scene *curr_scene = new SceneSeek;
+	Scene *curr_scene = new SoloAgentScene;
 	app->setWindowTitle(curr_scene->getTitle());
 
 	while (!quit)
@@ -31,13 +31,13 @@ int main(int argc, char ** argv)
 			if (event.key.keysym.scancode == SDL_SCANCODE_1)
 			{
 				delete(curr_scene);
-				curr_scene = new SceneSeek;
+				curr_scene = new SoloAgentScene;
 				app->setWindowTitle(curr_scene->getTitle());
 			}
 			if (event.key.keysym.scancode == SDL_SCANCODE_2)
 			{
 				delete(curr_scene);
-				curr_scene = new SceneFlee;
+				curr_scene = new MultiAgentScene;
 				app->setWindowTitle(curr_scene->getTitle());
 			}
 			if ((event.key.keysym.scancode == SDL_SCANCODE_Q) || (event.key.keysym.scancode == SDL_SCANCODE_ESCAPE))

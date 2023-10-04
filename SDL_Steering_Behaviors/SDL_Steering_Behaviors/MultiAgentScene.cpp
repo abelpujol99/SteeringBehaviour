@@ -1,9 +1,8 @@
-
-#include "SceneSeek.h"
+#include "MultiAgentScene.h"
 
 using namespace std;
 
-SceneSeek::SceneSeek()
+MultiAgentScene::MultiAgentScene()
 {
 	Agent *agent = new Agent;
 	agent->setPosition(Vector2D(640,360));
@@ -13,7 +12,7 @@ SceneSeek::SceneSeek()
 	target = Vector2D(640, 360);
 }
 
-SceneSeek::~SceneSeek()
+MultiAgentScene::~MultiAgentScene()
 {
 	for (int i = 0; i < (int)agents.size(); i++)
 	{
@@ -21,7 +20,7 @@ SceneSeek::~SceneSeek()
 	}
 }
 
-void SceneSeek::update(float dtime, SDL_Event *event)
+void MultiAgentScene::update(float dtime, SDL_Event *event)
 {
 	/* Keyboard & Mouse events */
 	switch (event->type) {
@@ -40,13 +39,13 @@ void SceneSeek::update(float dtime, SDL_Event *event)
 	agents[0]->update(dtime, event);
 }
 
-void SceneSeek::draw()
+void MultiAgentScene::draw()
 {
 	draw_circle(TheApp::Instance()->getRenderer(), (int)target.x, (int)target.y, 15, 255, 0, 0, 255);
 	agents[0]->draw();
 }
 
-const char* SceneSeek::getTitle()
+const char* MultiAgentScene::getTitle()
 {
-	return "SDL Steering Behaviors :: KinematicSeek Demo";
+	return "SDL Steering Behaviors :: Flee Demo";
 }

@@ -3,12 +3,12 @@
 #include "Scene.h"
 #include "Agent.h"
 
-class SceneSeek :
+class MultiAgentScene :
 	public Scene
 {
 public:
-	SceneSeek();
-	~SceneSeek();
+	MultiAgentScene();
+	~MultiAgentScene();
 	void update(float dtime, SDL_Event *event);
 	void draw();
 	const char* getTitle();
