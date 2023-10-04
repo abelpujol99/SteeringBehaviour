@@ -12,6 +12,8 @@
 class Agent
 {
 	friend class SteeringBehavior;
+	friend class SeekBehavior;
+	friend class FleeBehavior;
 
 private:
 	SteeringBehavior *steering_behavior;
@@ -31,6 +33,8 @@ private:
 	int sprite_num_frames;
 	int sprite_w;
 	int sprite_h;
+
+	bool _seekBehavior;
 
 public:
 	Agent();

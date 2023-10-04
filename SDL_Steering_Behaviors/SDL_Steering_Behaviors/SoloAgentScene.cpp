@@ -1,8 +1,9 @@
-#include "SceneFlee.h"
+
+#include "SoloAgentScene.h"
 
 using namespace std;
 
-SceneFlee::SceneFlee()
+SoloAgentScene::SoloAgentScene()
 {
 	Agent *agent = new Agent;
 	agent->setPosition(Vector2D(640,360));
@@ -12,7 +13,7 @@ SceneFlee::SceneFlee()
 	target = Vector2D(640, 360);
 }
 
-SceneFlee::~SceneFlee()
+SoloAgentScene::~SoloAgentScene()
 {
 	for (int i = 0; i < (int)agents.size(); i++)
 	{
@@ -20,7 +21,7 @@ SceneFlee::~SceneFlee()
 	}
 }
 
-void SceneFlee::update(float dtime, SDL_Event *event)
+void SoloAgentScene::update(float dtime, SDL_Event *event)
 {
 	/* Keyboard & Mouse events */
 	switch (event->type) {
@@ -39,13 +40,13 @@ void SceneFlee::update(float dtime, SDL_Event *event)
 	agents[0]->update(dtime, event);
 }
 
-void SceneFlee::draw()
+void SoloAgentScene::draw()
 {
 	draw_circle(TheApp::Instance()->getRenderer(), (int)target.x, (int)target.y, 15, 255, 0, 0, 255);
 	agents[0]->draw();
 }
 
-const char* SceneFlee::getTitle()
+const char* SoloAgentScene::getTitle()
 {
-	return "SDL Steering Behaviors :: Flee Demo";
+	return "SDL Steering Behaviors :: KinematicSeek Demo";
 }

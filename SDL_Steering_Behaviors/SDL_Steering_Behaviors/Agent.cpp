@@ -1,5 +1,8 @@
 #include "Agent.h"
 
+#include "FleeBehavior.h"
+#include "SeekBehavior.h"
+
 using namespace std;
 
 Agent::Agent() : sprite_texture(0),
@@ -16,7 +19,7 @@ Agent::Agent() : sprite_texture(0),
 	             sprite_h(0),
 	             draw_sprite(false)
 {
-	steering_behavior = new SteeringBehavior;
+	steering_behavior = new SeekBehavior;
 }
 
 Agent::~Agent()
@@ -84,15 +87,31 @@ void Agent::update(float dtime, SDL_Event *event)
 
 	switch (event->type) {
 		/* Keyboard & Mouse events */
-	case SDL_KEYDOWN:
-		if (event->key.keysym.scancode == SDL_SCANCODE_SPACE)
-			draw_sprite = !draw_sprite;
-		break;
-	default:
-		break;
+		case SDL_KEYDOWN:
+			if (event->key.keysym.scancode == SDL_SCANCODE_SPACE)
+			{
+				draw_sprite = !draw_sprite;	
+			}				
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			if (event->button.button == SDL_BUTTON_RIGHT)
+			{
+				if (_seekBehavior)
+				{
+					steering_behavior = new FleeBehavior;	
+				}
+				else
+				{
+					steering_behavior = new SeekBehavior;
+				}
+				_seekBehavior = !_seekBehavior;
+			}
+			break;
+		default:
+			break;
 	}
 
-	Vector2D steering_force = this->Behavior()->Seek(this, this->getTarget(), dtime);
+	Vector2D steering_force = this->Behavior()->CalculateForces(this, this->getTarget(), dtime);
 
 	Vector2D acceleration = steering_force / mass;
 	velocity = velocity + acceleration * dtime;
