@@ -134,9 +134,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Agent.h" />
+    <ClInclude Include="AlignmentBehavior.h" />
+    <ClInclude Include="CohesionBehavior.h" />
     <ClInclude Include="FleeBehavior.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="MultiAgentScene.h" />
+    <ClInclude Include="SeparationBehavior.h" />
     <ClInclude Include="SoloAgentScene.h" />
     <ClInclude Include="SDL_SimpleApp.h" />
     <ClInclude Include="SeekBehavior.h" />
@@ -146,9 +149,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
+    <ClCompile Include="AlignmentBehavior.cpp" />
+    <ClCompile Include="CohesionBehavior.cpp" />
     <ClCompile Include="FleeBehavior.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MultiAgentScene.cpp" />
+    <ClCompile Include="SeparationBehavior.cpp" />
     <ClCompile Include="SoloAgentScene.cpp" />
     <ClCompile Include="SDL_SimpleApp.cpp" />
     <ClCompile Include="SeekBehavior.cpp" />
