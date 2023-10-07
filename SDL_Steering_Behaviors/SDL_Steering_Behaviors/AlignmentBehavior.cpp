@@ -17,3 +17,8 @@ Vector2D AlignmentBehavior::CalculateForces(Agent* agent, Agent* target, float d
 {
     return Vector2D();
 }
+
+void AlignmentBehavior::Accept(Agent* agent)
+{
+    agent->VisitSteeringBehavior(this);
+}

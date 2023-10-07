@@ -3,8 +3,7 @@
 #include "Scene.h"
 #include "Agent.h"
 
-class SoloAgentScene :
-	public Scene
+class SoloAgentScene : public Scene
 {
 public:
 	SoloAgentScene();
@@ -12,8 +11,9 @@ public:
 	void update(float dtime, SDL_Event *event);
 	void draw();
 	const char* getTitle();
+
 private:
 	std::vector<Agent*> agents;
-	Vector2D target;
+	Vector2D* _target;
 };
 

@@ -135,8 +135,10 @@
   <ItemGroup>
     <ClInclude Include="Agent.h" />
     <ClInclude Include="AlignmentBehavior.h" />
+    <ClInclude Include="BehaviorPattern.h" />
     <ClInclude Include="CohesionBehavior.h" />
     <ClInclude Include="FleeBehavior.h" />
+    <ClInclude Include="PriorityList.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="MultiAgentScene.h" />
     <ClInclude Include="SeparationBehavior.h" />
@@ -146,20 +148,24 @@
     <ClInclude Include="SteeringBehavior.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="Vector2D.h" />
+    <ClInclude Include="WeightedBlending.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
     <ClCompile Include="AlignmentBehavior.cpp" />
+    <ClCompile Include="BehaviorPattern.cpp" />
     <ClCompile Include="CohesionBehavior.cpp" />
     <ClCompile Include="FleeBehavior.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MultiAgentScene.cpp" />
+    <ClCompile Include="PriorityList.cpp" />
     <ClCompile Include="SeparationBehavior.cpp" />
     <ClCompile Include="SoloAgentScene.cpp" />
     <ClCompile Include="SDL_SimpleApp.cpp" />
     <ClCompile Include="SeekBehavior.cpp" />
     <ClCompile Include="SteeringBehavior.cpp" />
     <ClCompile Include="utils.cpp" />
+    <ClCompile Include="WeightedBlending.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

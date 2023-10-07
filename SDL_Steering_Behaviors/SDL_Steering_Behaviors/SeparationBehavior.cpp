@@ -17,3 +17,8 @@ Vector2D SeparationBehavior::CalculateForces(Agent* agent, Agent* target, float 
 {
     return Vector2D();
 }
+
+void SeparationBehavior::Accept(Agent* agent)
+{
+    agent->VisitSteeringBehavior(this);
+}

@@ -3,14 +3,18 @@
 #include <minmax.h>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <vector>
+
 #include "SDL_SimpleApp.h"
 #include "Vector2D.h"
 #include "utils.h"
-#include "SteeringBehavior.h"
 
 
 class Agent
 {
+	friend class BehaviorPattern;
+	friend class WeightedBlending;
+	friend class PriorityList;
 	friend class SteeringBehavior;
 	friend class SeekBehavior;
 	friend class FleeBehavior;
@@ -19,10 +23,12 @@ class Agent
 	friend class AlignmentBehavior;
 
 private:
-	SteeringBehavior *steering_behavior;
-	Vector2D position;
-	Vector2D velocity;
-	Vector2D target;
+	BehaviorPattern* _behaviorPattern;
+	std::string _currentScene;
+	std::vector<std::string> _steeringBehaviorsName;
+	Vector2D _position;
+	Vector2D _velocity;
+	Vector2D* _target;
 
 	float mass;
 	float orientation;
@@ -36,15 +42,16 @@ private:
 	int sprite_num_frames;
 	int sprite_w;
 	int sprite_h;
+	int _modeSelected;
 
 	bool _seekBehavior;
+	bool _isWeightedBlending;
 
 public:
-	Agent();
+	Agent(BehaviorPattern* behaviorPatten, Vector2D* target);
 	~Agent();
-	SteeringBehavior *Behavior();
 	Vector2D getPosition();
-	Vector2D getTarget();
+	Vector2D* getTarget();
 	Vector2D getVelocity();
 	float getMaxVelocity();
 	void setPosition(Vector2D position);
@@ -54,6 +61,13 @@ public:
 	void setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 	void update(float dtime, SDL_Event *event);
 	void draw();
-	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
-	
+	bool loadSpriteTexture(char* filename, int num_frames=1);
+	//void Change
+	void VisitSteeringBehavior(AlignmentBehavior* alignmentBehavior);
+	void VisitSteeringBehavior(CohesionBehavior* cohesionBehavior);
+	void VisitSteeringBehavior(FleeBehavior* fleeBehavior);
+	void VisitSteeringBehavior(SeekBehavior* seekBehavior);
+	void VisitSteeringBehavior(SeparationBehavior* separationBehavior);
+	void VisitBehaviorPattern(WeightedBlending* weightedBlending);
+	void VisitBehaviorPattern(PriorityList* priorityList);
 };

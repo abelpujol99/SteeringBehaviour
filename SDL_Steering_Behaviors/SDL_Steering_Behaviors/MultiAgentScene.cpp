@@ -1,51 +1,68 @@
 #include "MultiAgentScene.h"
 
+#include "WeightedBlending.h"
+
 using namespace std;
 
 MultiAgentScene::MultiAgentScene()
 {
-	Agent *agent = new Agent;
-	agent->setPosition(Vector2D(640,360));
-	agent->setTarget(Vector2D(640, 360));
-	//agent->loadSpriteTexture("../res/soldier.png", 4);
-	agents.push_back(agent);
-	target = Vector2D(640, 360);
+	srand(time(NULL));
+    
+	for (int i = 0; i < TOTAL_AGENTS; i++)
+	{
+		std::vector<SteeringBehavior*> steeringBehaviors {new CohesionBehavior, new AlignmentBehavior, new SeparationBehavior};
+		std::vector<float> weigths {COHESION_WEIGHT, ALIGNMENT_WEIGHT, SEPARATION_WEIGHT};
+		_agents.push_back(new Agent(new WeightedBlending(steeringBehaviors, weigths), _target));
+		_agents[i]->setPosition(Vector2D(rand() % 1280, rand() % 768));
+		*_target += _agents[i]->getPosition();
+	}
+
+	*_target /= TOTAL_AGENTS;
 }
 
 MultiAgentScene::~MultiAgentScene()
 {
-	for (int i = 0; i < (int)agents.size(); i++)
+	for (int i = 0; i < _agents.size(); ++i)
 	{
-		delete agents[i];
+		delete _agents[i];
 	}
+
+	delete _target;
+	delete _averagePosition;
 }
 
 void MultiAgentScene::update(float dtime, SDL_Event *event)
 {
 	/* Keyboard & Mouse events */
 	switch (event->type) {
-	case SDL_MOUSEMOTION:
-	case SDL_MOUSEBUTTONDOWN:
-		if (event->button.button == SDL_BUTTON_LEFT)
-		{
-			target = Vector2D((float)(event->button.x), (float)(event->button.y));
-			agents[0]->setTarget(target);
-		}
-		break;
-	default:
-		break;
+		case SDL_MOUSEMOTION:
+		case SDL_MOUSEBUTTONDOWN:
+			if (event->button.button == SDL_BUTTON_LEFT)
+			{
+				*_target = Vector2D((float)(event->button.x), (float)(event->button.y));				
+			}
+			break;
+		default:
+			break;
 	}
-	
-	agents[0]->update(dtime, event);
+
+	for (Agent* agent : _agents)
+	{
+		agent->update(dtime, event);
+	}
 }
 
 void MultiAgentScene::draw()
 {
-	draw_circle(TheApp::Instance()->getRenderer(), (int)target.x, (int)target.y, 15, 255, 0, 0, 255);
-	agents[0]->draw();
+	draw_circle(TheApp::Instance()->getRenderer(), (int)_target->x, (int)_target->y, NEIGHBORHOOD_RADIUS, 255, 0, 0, 255);
+	
+	for (Agent* agent : _agents)
+	{
+		agent->draw();
+	}
 }
 
 const char* MultiAgentScene::getTitle()
 {
-	return "SDL Steering Behaviors :: Flee Demo";
+	return "SDL Steering Behaviors :: Multi Agent Demo";
 }
