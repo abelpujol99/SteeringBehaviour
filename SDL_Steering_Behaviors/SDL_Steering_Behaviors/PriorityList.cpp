@@ -12,8 +12,3 @@ Vector2D PriorityList::CalculateForce(Agent* agent, Vector2D target, float dtime
 {
     return Vector2D();
 }
-
-void PriorityList::Accept(Agent* agent)
-{
-    agent->VisitBehaviorPattern(this);
-}

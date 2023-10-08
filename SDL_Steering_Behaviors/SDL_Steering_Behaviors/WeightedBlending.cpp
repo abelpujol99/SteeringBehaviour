@@ -15,7 +15,17 @@ Vector2D WeightedBlending::CalculateForce(Agent* agent, Vector2D target, float d
     return force;
 }
 
-void WeightedBlending::Accept(Agent* agent)
+Vector2D WeightedBlending::CalculateForce(std::vector<FlockingAgent*> flockingAgents, Agent* agent, Vector2D target,
+    float dtime)
 {
-    agent->VisitBehaviorPattern(this);
+    Vector2D force = Vector2D(0,0);
+
+    for (int i = 0; i < _steeringBehaviors.size(); ++i)
+    {
+        force += _steeringBehaviors[i]->CalculateForces(agent, target, dtime) * _weights[i];
+    }    
+    return force;
 }
+
+
+

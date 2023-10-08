@@ -14,6 +14,4 @@ public:
     ~BehaviorPattern();
     
     virtual Vector2D CalculateForce(Agent* agent, Vector2D target, float dtime) = 0;
-    
-    virtual void Accept(Agent* agent) = 0;
 };

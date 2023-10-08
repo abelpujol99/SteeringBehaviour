@@ -1,5 +1,6 @@
 #include "MultiAgentScene.h"
 
+#include "FlockingAgent.h"
 #include "WeightedBlending.h"
 
 using namespace std;
@@ -8,16 +9,7 @@ MultiAgentScene::MultiAgentScene()
 {
 	srand(time(NULL));
     
-	for (int i = 0; i < TOTAL_AGENTS; i++)
-	{
-		std::vector<SteeringBehavior*> steeringBehaviors {new CohesionBehavior, new AlignmentBehavior, new SeparationBehavior};
-		std::vector<float> weigths {COHESION_WEIGHT, ALIGNMENT_WEIGHT, SEPARATION_WEIGHT};
-		_agents.push_back(new Agent(new WeightedBlending(steeringBehaviors, weigths), _target));
-		_agents[i]->setPosition(Vector2D(rand() % 1280, rand() % 768));
-		*_target += _agents[i]->getPosition();
-	}
-
-	*_target /= TOTAL_AGENTS;
+	*_target = Vector2D(640,360);
 }
 
 MultiAgentScene::~MultiAgentScene()
@@ -34,13 +26,31 @@ MultiAgentScene::~MultiAgentScene()
 void MultiAgentScene::update(float dtime, SDL_Event *event)
 {
 	/* Keyboard & Mouse events */
-	switch (event->type) {
-		case SDL_MOUSEMOTION:
+	switch (event->type) {		
 		case SDL_MOUSEBUTTONDOWN:
-			if (event->button.button == SDL_BUTTON_LEFT)
+			switch (event->button.button)
 			{
-				*_target = Vector2D((float)(event->button.x), (float)(event->button.y));				
-			}
+				case SDL_BUTTON_LEFT:
+					{
+						std::vector<SteeringBehavior*> steeringBehaviors {new CohesionBehavior, new AlignmentBehavior, new SeparationBehavior};
+						std::vector<float> weigths {COHESION_WEIGHT, ALIGNMENT_WEIGHT, SEPARATION_WEIGHT};
+						
+						int randomAngle = rand () % 361;
+						Vector2D* directionVector = new Vector2D(cosf(randomAngle), sinf(randomAngle));
+						
+						FlockingAgent* flockingAgent = new FlockingAgent(new WeightedBlending(steeringBehaviors, weigths),
+							directionVector,
+							Vector2D((float)(event->button.x), (float)(event->button.y)));
+
+						for (FlockingAgent* agent : _agents)
+						{
+							agent->MeetNewAgent(flockingAgent);
+						}
+						
+						_agents.push_back(flockingAgent);						
+					}
+					break;
+				}
 			break;
 		default:
 			break;
@@ -53,9 +63,7 @@ void MultiAgentScene::update(float dtime, SDL_Event *event)
 }
 
 void MultiAgentScene::draw()
-{
-	draw_circle(TheApp::Instance()->getRenderer(), (int)_target->x, (int)_target->y, NEIGHBORHOOD_RADIUS, 255, 0, 0, 255);
-	
+{	
 	for (Agent* agent : _agents)
 	{
 		agent->draw();

@@ -4,9 +4,9 @@
 
 using namespace std;
 
-Agent::Agent(BehaviorPattern* behaviorPattern, Vector2D* target) :
+Agent::Agent(Vector2D initialPosition, Vector2D* target) :
 				 sprite_texture(0),
-                 _position(Vector2D(100, 100)),
+                 _position(initialPosition),
 				 _target(target),
 	             _velocity(Vector2D(0,0)),
 	             mass(0.5f),
@@ -17,21 +17,26 @@ Agent::Agent(BehaviorPattern* behaviorPattern, Vector2D* target) :
 				 sprite_num_frames(0),
 	             sprite_w(0),
 	             sprite_h(0),
-	             draw_sprite(false),
-				 _behaviorPattern(behaviorPattern),
-				 _modeSelected(0)
-{	
-	/*for (SteeringBehavior* steeringBehavior : _steeringBehaviorsVector)
-	{
-		steeringBehavior->Accept(this);	
-	}*/
-}
+	             draw_sprite(false){}
+
+Agent::Agent(Vector2D initialPosition):
+				 sprite_texture(0),
+				 _position(initialPosition),
+				 _target(new Vector2D(0)),
+				 _velocity(Vector2D(0,0)),
+				 mass(0.5f),
+				 max_force(50),
+				 max_velocity(200),
+				 orientation(0),
+				 color({ 255,255,255,255 }),
+				 sprite_num_frames(0),
+				 sprite_w(0),
+				 sprite_h(0),
+				 draw_sprite(false){}
 
 Agent::~Agent()
 {
 	SDL_DestroyTexture(sprite_texture);
-
-	delete _behaviorPattern;
 
 	delete _target;
 }
@@ -81,44 +86,6 @@ void Agent::setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 	color = { r, g, b, a };
 }
 
-void Agent::update(float dtime, SDL_Event *event)
-{
-
-	//cout << "agent update:" << endl;
-
-	switch (event->type) {
-		/* Keyboard & Mouse events */
-		case SDL_KEYDOWN:
-			if (event->key.keysym.scancode == SDL_SCANCODE_SPACE)
-			{
-				draw_sprite = !draw_sprite;	
-			}				
-			break;
-		default:
-			break;
-	}
-
-	//Vector2D steering_force = this->Behavior()[_modeSelected]->CalculateForces(this, *_target, dtime);
-	Vector2D steering_force = _behaviorPattern->CalculateForce(this, *_target, dtime);
-
-	Vector2D acceleration = steering_force / mass;
-	_velocity = _velocity + acceleration * dtime;
-	_velocity = _velocity.Truncate(max_velocity);
-
-	_position = _position + _velocity * dtime;
-
-
-	// Update orientation
-	orientation = (float)(atan2(_velocity.y, _velocity.x) * RAD2DEG);
-
-
-	// Trim position values to window size
-	if (_position.x < 0) _position.x = TheApp::Instance()->getWinSize().x;
-	if (_position.y < 0) _position.y = TheApp::Instance()->getWinSize().y;
-	if (_position.x > TheApp::Instance()->getWinSize().x) _position.x = 0;
-	if (_position.y > TheApp::Instance()->getWinSize().y) _position.y = 0;
-}
-
 void Agent::draw()
 {
 	if (draw_sprite)
@@ -162,41 +129,4 @@ bool Agent::loadSpriteTexture(char* filename, int _num_frames)
 		SDL_FreeSurface(image);
 
 	return true;
-}
-
-
-
-void Agent::VisitSteeringBehavior(AlignmentBehavior* alignmentBehavior)
-{
-	_steeringBehaviorsName.push_back("Alignment");
-}
-
-void Agent::VisitSteeringBehavior(CohesionBehavior* cohesionBehavior)
-{
-	_steeringBehaviorsName.push_back("Cohesion");
-}
-
-void Agent::VisitSteeringBehavior(FleeBehavior* fleeBehavior)
-{
-	_steeringBehaviorsName.push_back("Flee");
-}
-
-void Agent::VisitSteeringBehavior(SeekBehavior* seekBehavior)
-{
-	_steeringBehaviorsName.push_back("Seek");
-}
-
-void Agent::VisitSteeringBehavior(SeparationBehavior* separationBehavior)
-{
-	_steeringBehaviorsName.push_back("Separation");
-}
-
-void Agent::VisitBehaviorPattern(WeightedBlending* weightedBlending)
-{
-	
-}
-
-void Agent::VisitBehaviorPattern(PriorityList* priorityList)
-{
-	
 }

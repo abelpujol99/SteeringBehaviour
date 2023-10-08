@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "BehaviorPattern.h"
+#include "FlockingAgent.h"
 #include "SteeringBehavior.h"
 
 class WeightedBlending : public BehaviorPattern
@@ -16,5 +17,5 @@ public:
     ~WeightedBlending();
     
     Vector2D CalculateForce(Agent* agent, Vector2D target, float dtime) override;
-    void Accept(Agent* agent) override;
+    Vector2D CalculateForce(std::vector<FlockingAgent*> flockingAgents, Agent* agent, Vector2D target, float dtime);
 };

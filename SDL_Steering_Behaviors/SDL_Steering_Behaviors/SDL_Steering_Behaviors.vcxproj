@@ -138,6 +138,7 @@
     <ClInclude Include="BehaviorPattern.h" />
     <ClInclude Include="CohesionBehavior.h" />
     <ClInclude Include="FleeBehavior.h" />
+    <ClInclude Include="FlockingAgent.h" />
     <ClInclude Include="PriorityList.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="MultiAgentScene.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="SDL_SimpleApp.h" />
     <ClInclude Include="SeekBehavior.h" />
     <ClInclude Include="SteeringBehavior.h" />
+    <ClInclude Include="UniqueBehaviorAgent.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="WeightedBlending.h" />
@@ -158,12 +160,14 @@
     <ClCompile Include="FleeBehavior.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MultiAgentScene.cpp" />
+    <ClCompile Include="FlockingAgent.cpp" />
     <ClCompile Include="PriorityList.cpp" />
     <ClCompile Include="SeparationBehavior.cpp" />
     <ClCompile Include="SoloAgentScene.cpp" />
     <ClCompile Include="SDL_SimpleApp.cpp" />
     <ClCompile Include="SeekBehavior.cpp" />
     <ClCompile Include="SteeringBehavior.cpp" />
+    <ClCompile Include="UniqueBehaviorAgent.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="WeightedBlending.cpp" />
   </ItemGroup>
