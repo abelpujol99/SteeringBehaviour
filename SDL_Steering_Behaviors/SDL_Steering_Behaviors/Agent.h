@@ -35,7 +35,6 @@ protected:
 
 public:
 	Agent(Vector2D initialPosition, Vector2D* target);
-	Agent(Vector2D initialPosition);
 	~Agent();
 	Vector2D getPosition();
 	Vector2D* getTarget();

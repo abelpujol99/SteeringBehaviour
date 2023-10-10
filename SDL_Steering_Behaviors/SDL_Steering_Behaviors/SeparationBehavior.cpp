@@ -12,13 +12,13 @@ Vector2D SeparationBehavior::CalculateForces(Agent* agent, Vector2D target, floa
 
     int neighborCounter = 0;
     
-    for (Agent* agent : currentFlockingAgent->GetFlockingAgents())
+    for (Agent* otherAgent : currentFlockingAgent->GetFlockingAgents())
     {
-        float distance = Vector2D::Distance(agent->getPosition(), currentFlockingAgent->getPosition());
+        float distance = Vector2D::Distance(otherAgent->getPosition(), currentFlockingAgent->getPosition());
         
         if (distance < currentFlockingAgent->GetNeighborRadius())
         {
-            separationVector += currentFlockingAgent->getPosition() - agent->getPosition();
+            separationVector += currentFlockingAgent->getPosition() - otherAgent->getPosition();
             neighborCounter++;
         }
     }

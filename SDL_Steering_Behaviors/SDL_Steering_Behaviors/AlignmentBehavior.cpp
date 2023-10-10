@@ -30,7 +30,9 @@ Vector2D AlignmentBehavior::CalculateForces(Agent* agent, Vector2D target, float
 
     currentFlockingAgent->SetAverageVelocity(averageVelocity);
 
-    return currentFlockingAgent->CalculateAverageVelocity(neighborCounter).Normalize();
+    currentFlockingAgent->setTarget(currentFlockingAgent->CalculateAverageVelocity(neighborCounter).Normalize());
+    
+    return *currentFlockingAgent->getTarget();
 }
 
 Vector2D AlignmentBehavior::CalculateForces(Agent* agent, Agent* target, float dtime)

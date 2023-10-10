@@ -1,12 +1,11 @@
 ﻿#include "FlockingAgent.h"
 
-FlockingAgent::FlockingAgent(BehaviorPattern* behaviorPattern, Vector2D* direction, Vector2D initialPosition) :
+FlockingAgent::FlockingAgent(BehaviorPattern* behaviorPattern, Vector2D* target, Vector2D initialPosition) :
                 _averageNeighborPosition(new Vector2D(0)),
                 _separationDirection(new Vector2D(0)),
                 _averageNeighborVelocity(new Vector2D(0)),
                 _behaviorPattern(behaviorPattern),
-                _direction(direction),
-                Agent(initialPosition)
+                Agent(initialPosition, target)
 {}
 
 FlockingAgent::~FlockingAgent()
@@ -45,9 +44,11 @@ void FlockingAgent::update(float dtime, SDL_Event* event)
         break;
     }
 
-    Vector2D steeringForce = _behaviorPattern->CalculateForce(this, *_direction, dtime);
+    Vector2D steeringForce = _behaviorPattern->CalculateForce(this, *_target, dtime);
 
-    _velocity = _velocity + steeringForce * 100 * dtime;
+    Vector2D acceleration = steeringForce / mass;
+    
+    _velocity = _velocity + acceleration * 10 * dtime;
     _velocity = _velocity.Truncate(max_velocity);
 
     _position = _position + _velocity * dtime;
@@ -77,11 +78,6 @@ Vector2D FlockingAgent::CalculateSeparationVector(int neighborCount)
 Vector2D FlockingAgent::CalculateAverageVelocity(int neighborCount)
 {
     return *_averageNeighborVelocity = *_averageNeighborVelocity / neighborCount;
-}
-
-Vector2D FlockingAgent::GetDirection()
-{
-    return *_direction;
 }
 
 void FlockingAgent::SetAveragePosition(Vector2D averagePosition)

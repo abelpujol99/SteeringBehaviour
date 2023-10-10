@@ -19,21 +19,6 @@ Agent::Agent(Vector2D initialPosition, Vector2D* target) :
 	             sprite_h(0),
 	             draw_sprite(false){}
 
-Agent::Agent(Vector2D initialPosition):
-				 sprite_texture(0),
-				 _position(initialPosition),
-				 _target(new Vector2D(0)),
-				 _velocity(Vector2D(0,0)),
-				 mass(0.5f),
-				 max_force(50),
-				 max_velocity(200),
-				 orientation(0),
-				 color({ 255,255,255,255 }),
-				 sprite_num_frames(0),
-				 sprite_w(0),
-				 sprite_h(0),
-				 draw_sprite(false){}
-
 Agent::~Agent()
 {
 	SDL_DestroyTexture(sprite_texture);

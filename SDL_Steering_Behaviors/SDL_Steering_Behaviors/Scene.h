@@ -2,9 +2,9 @@
 #include <iostream>
 #include <SDL.h>
 
-#define SEPARATION_WEIGHT 4000 
-#define COHESION_WEIGHT 4000
-#define ALIGNMENT_WEIGHT 800
+#define SEPARATION_WEIGHT 57 
+#define COHESION_WEIGHT 10
+#define ALIGNMENT_WEIGHT 47
 
 class Scene
 {

@@ -12,7 +12,6 @@ private:
 	
     BehaviorPattern* _behaviorPattern;	
 
-	Vector2D* _direction;
 	Vector2D* _averageNeighborPosition;
 	Vector2D* _separationDirection;
 	Vector2D* _averageNeighborVelocity;
@@ -31,9 +30,6 @@ public:
 	Vector2D CalculateAveragePosition(int neighborCount);
 	Vector2D CalculateSeparationVector(int neighborCount);
 	Vector2D CalculateAverageVelocity(int neighborCount);
-	void ModifyNeighborCount(int modifier);
-
-	Vector2D GetDirection();
 	
 	void SetAveragePosition(Vector2D averagePosition);	
 	Vector2D GetAveragePosition();
