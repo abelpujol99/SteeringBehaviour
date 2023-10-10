@@ -6,12 +6,12 @@ FleeBehavior::~FleeBehavior(){}
 
 Vector2D FleeBehavior::CalculateForces(Agent* agent, Vector2D target, float dtime)
 {
-    Vector2D steering = agent->position - target;
+    Vector2D steering = agent->getPosition() - target;
     steering.Normalize();
-    return steering * agent->max_velocity;
+    return steering * agent->getMaxVelocity();
 }
 
 Vector2D FleeBehavior::CalculateForces(Agent* agent, Agent* target, float dtime)
 {
-    return CalculateForces(agent, target->position, dtime);
+    return CalculateForces(agent, target->getPosition(), dtime);
 }

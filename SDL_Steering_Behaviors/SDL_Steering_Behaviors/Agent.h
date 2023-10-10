@@ -3,6 +3,8 @@
 #include <minmax.h>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <vector>
+
 #include "SDL_SimpleApp.h"
 #include "Vector2D.h"
 #include "utils.h"
@@ -11,15 +13,11 @@
 
 class Agent
 {
-	friend class SteeringBehavior;
-	friend class SeekBehavior;
-	friend class FleeBehavior;
 
-private:
-	SteeringBehavior *steering_behavior;
-	Vector2D position;
-	Vector2D velocity;
-	Vector2D target;
+protected:
+	Vector2D _position;
+	Vector2D _velocity;
+	Vector2D* _target;
 
 	float mass;
 	float orientation;
@@ -34,14 +32,12 @@ private:
 	int sprite_w;
 	int sprite_h;
 
-	bool _seekBehavior;
 
 public:
-	Agent();
+	Agent(Vector2D initialPosition, Vector2D* target);
 	~Agent();
-	SteeringBehavior *Behavior();
 	Vector2D getPosition();
-	Vector2D getTarget();
+	Vector2D* getTarget();
 	Vector2D getVelocity();
 	float getMaxVelocity();
 	void setPosition(Vector2D position);
@@ -49,8 +45,7 @@ public:
 	void setVelocity(Vector2D velocity);
 	void setMass(float mass);
 	void setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
-	void update(float dtime, SDL_Event *event);
+	virtual void update(float dtime, SDL_Event *event) = 0;
 	void draw();
-	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
-	
+	bool loadSpriteTexture(char* filename, int num_frames=1);
 };

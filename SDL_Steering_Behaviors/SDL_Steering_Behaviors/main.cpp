@@ -30,15 +30,21 @@ int main(int argc, char ** argv)
 		case SDL_KEYDOWN:
 			if (event.key.keysym.scancode == SDL_SCANCODE_1)
 			{
-				delete(curr_scene);
-				curr_scene = new SoloAgentScene;
-				app->setWindowTitle(curr_scene->getTitle());
+				if (curr_scene->getTitle() != "SDL Steering Behaviors :: Solo Agent Demo")
+				{
+					delete(curr_scene);
+					curr_scene = new SoloAgentScene;
+					app->setWindowTitle(curr_scene->getTitle());
+				}
 			}
 			if (event.key.keysym.scancode == SDL_SCANCODE_2)
 			{
-				delete(curr_scene);
-				curr_scene = new MultiAgentScene;
-				app->setWindowTitle(curr_scene->getTitle());
+				if (curr_scene->getTitle() != "SDL Steering Behaviors :: Multi Agent Demo")
+				{
+					delete(curr_scene);
+					curr_scene = new MultiAgentScene;
+					app->setWindowTitle(curr_scene->getTitle());
+				}
 			}
 			if ((event.key.keysym.scancode == SDL_SCANCODE_Q) || (event.key.keysym.scancode == SDL_SCANCODE_ESCAPE))
 			{
