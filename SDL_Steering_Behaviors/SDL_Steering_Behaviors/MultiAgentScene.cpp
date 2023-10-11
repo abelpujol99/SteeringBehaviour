@@ -10,6 +10,12 @@ MultiAgentScene::MultiAgentScene()
 	srand(time(NULL));
     
 	*_target = Vector2D(640,360);
+	std::vector<Vector2D> vertices;
+	vertices.push_back(Vector2D(-100, -100));
+	vertices.push_back(Vector2D(-100, 100));
+	vertices.push_back(Vector2D(100, 100));
+	vertices.push_back(Vector2D(100, -100));
+	_obstacles.push_back(new Obstacle(vertices, Vector2D(500,500), new Vector2D(500, 500)));
 }
 
 MultiAgentScene::~MultiAgentScene()
@@ -32,10 +38,10 @@ void MultiAgentScene::update(float dtime, SDL_Event *event)
 			{
 				case SDL_BUTTON_LEFT:
 					{
-						std::vector<SteeringBehavior*> steeringBehaviors {new CohesionBehavior, new AlignmentBehavior, new SeparationBehavior, new ObstacleAvoidanceBehavior};
+						std::vector<SteeringBehavior*> steeringBehaviors {new CohesionBehavior, new AlignmentBehavior, new SeparationBehavior, new ObstacleAvoidanceBehavior(_obstacles)};
 						std::vector<float> weigths {COHESION_WEIGHT, ALIGNMENT_WEIGHT, SEPARATION_WEIGHT, OBSTACLE_AVOIDANCE_WEIGHT};
 						
-						int randomAngle = rand () % 361;
+						int randomAngle = rand () % 360;
 						Vector2D* directionVector = new Vector2D(cosf(randomAngle), sinf(randomAngle));
 						
 						FlockingAgent* flockingAgent = new FlockingAgent(new WeightedBlending(steeringBehaviors, weigths),
@@ -67,6 +73,9 @@ void MultiAgentScene::draw()
 	for (Agent* agent : _agents)
 	{
 		agent->draw();
+	}
+	for (Obstacle* obstacle : _obstacles) {
+		obstacle->draw();
 	}
 }
 
