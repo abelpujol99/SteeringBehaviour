@@ -5,6 +5,7 @@
 #include "CohesionBehavior.h"
 #include "FlockingAgent.h"
 #include "SeparationBehavior.h"
+#include "ObstacleAvoidanceBehavior.h"
 
 class MultiAgentScene :	public Scene
 {

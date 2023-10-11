@@ -32,8 +32,8 @@ void MultiAgentScene::update(float dtime, SDL_Event *event)
 			{
 				case SDL_BUTTON_LEFT:
 					{
-						std::vector<SteeringBehavior*> steeringBehaviors {new CohesionBehavior, new AlignmentBehavior, new SeparationBehavior};
-						std::vector<float> weigths {COHESION_WEIGHT, ALIGNMENT_WEIGHT, SEPARATION_WEIGHT};
+						std::vector<SteeringBehavior*> steeringBehaviors {new CohesionBehavior, new AlignmentBehavior, new SeparationBehavior, new ObstacleAvoidanceBehavior};
+						std::vector<float> weigths {COHESION_WEIGHT, ALIGNMENT_WEIGHT, SEPARATION_WEIGHT, OBSTACLE_AVOIDANCE_WEIGHT};
 						
 						int randomAngle = rand () % 361;
 						Vector2D* directionVector = new Vector2D(cosf(randomAngle), sinf(randomAngle));

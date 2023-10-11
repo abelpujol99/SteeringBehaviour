@@ -139,6 +139,7 @@
     <ClInclude Include="CohesionBehavior.h" />
     <ClInclude Include="FleeBehavior.h" />
     <ClInclude Include="FlockingAgent.h" />
+    <ClInclude Include="ObstacleAvoidanceBehavior.h" />
     <ClInclude Include="PriorityList.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="MultiAgentScene.h" />
@@ -161,6 +162,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MultiAgentScene.cpp" />
     <ClCompile Include="FlockingAgent.cpp" />
+    <ClCompile Include="ObstacleAvoidanceBehavior.cpp" />
     <ClCompile Include="PriorityList.cpp" />
     <ClCompile Include="SeparationBehavior.cpp" />
     <ClCompile Include="SoloAgentScene.cpp" />
