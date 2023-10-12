@@ -8,7 +8,7 @@ class ObstacleAvoidanceBehavior : public SteeringBehavior
 	
 public:
 	
-	float avoidanceLookahead = 30.f;
+	float avoidanceLookahead = 50.f;
 	std::vector<Obstacle*> _obstacles;
 
 	ObstacleAvoidanceBehavior(std::vector<Obstacle*> obstacles);

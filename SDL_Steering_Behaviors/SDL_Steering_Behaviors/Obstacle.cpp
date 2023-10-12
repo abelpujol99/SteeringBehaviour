@@ -12,7 +12,7 @@ bool Obstacle::IntersectSegment(Vector2D pos, Vector2D raycastVector, Vector2D& 
 {
 	bool collide = false;
 	float minDist = raycastVector.Length() * 2;
-	bool inside = true;
+	bool back = false;
 	for (int i = 0; i < _vertices.size(); i++) {
 		Vector2D p1 = _vertices[i] + _position;
 		Vector2D p2 = _vertices[(i + 1) % _vertices.size()] + _position;
@@ -29,7 +29,8 @@ bool Obstacle::IntersectSegment(Vector2D pos, Vector2D raycastVector, Vector2D& 
 		if (raycastVector.x == 0.f) {
 			t1 = ((p1.y + segment.y * t2 - pos.y) / raycastVector.y);
 		}
-		//std::cout << t1 << std::endl;
+		if (isnan(t1) || isinf(t1)) continue;
+
 		if (t1 >= 0.f && t1 <= raycastVector.Length() && t2 >= 0.f && t2 <= 1.f) {
 			collide = true;
 			if (t1 < minDist) {
@@ -37,16 +38,11 @@ bool Obstacle::IntersectSegment(Vector2D pos, Vector2D raycastVector, Vector2D& 
 				intersectionPoint = p1 + segment * t2;
 				normalVector = Vector2D(-segment.x, -segment.y).Normalize();
 			}
-			//std::cout << "Segment " << j << " Pos: " << pos.x << ", " << pos.y << " Point: " << intersectionPoint.x << ", " << intersectionPoint.y << " Normal: " << normalVector.x << "," << normalVector.y << " | T2 = " << t2 << ", T1 = " << t1 << std::endl;
-			int xd = 0;
-			
 		}
-		else {
-			inside = false;
+		if (t1 < 0 && abs(t1) <= raycastVector.Length() && t2 >= 0.f && t2 <= 1.f) {
+			back = true;
 		}
-	}
-	if (inside) {
-		std::cout << "inside" << std::endl;
+		if (collide && back) return false;
 	}
 	return collide;
 }

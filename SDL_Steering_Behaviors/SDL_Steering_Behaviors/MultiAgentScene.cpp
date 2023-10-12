@@ -10,12 +10,7 @@ MultiAgentScene::MultiAgentScene()
 	srand(time(NULL));
     
 	*_target = Vector2D(640,360);
-	std::vector<Vector2D> vertices;
-	vertices.push_back(Vector2D(-100, -100));
-	vertices.push_back(Vector2D(-100, 100));
-	vertices.push_back(Vector2D(100, 100));
-	vertices.push_back(Vector2D(100, -100));
-	_obstacles.push_back(new Obstacle(vertices, Vector2D(500,500), new Vector2D(500, 500)));
+	SetupObstacles();
 }
 
 MultiAgentScene::~MultiAgentScene()
@@ -77,6 +72,36 @@ void MultiAgentScene::draw()
 	for (Obstacle* obstacle : _obstacles) {
 		obstacle->draw();
 	}
+}
+
+void MultiAgentScene::SetupObstacles() {
+	std::vector<Vector2D> vertices;
+	vertices.push_back(Vector2D(-100, -150));
+	vertices.push_back(Vector2D(-120, 30));
+	vertices.push_back(Vector2D(0, 100));
+	vertices.push_back(Vector2D(120, 30));
+	vertices.push_back(Vector2D(100, -150));
+	_obstacles.push_back(new Obstacle(vertices, Vector2D(200, 500), new Vector2D(200, 500)));
+
+	vertices.clear();
+	vertices.push_back(Vector2D(65, -35));
+	vertices.push_back(Vector2D(-35, -65));
+	vertices.push_back(Vector2D(-65, 35));
+	vertices.push_back(Vector2D(35, 65));
+	_obstacles.push_back(new Obstacle(vertices, Vector2D(1100, 100), new Vector2D(1100, 100)));
+
+	vertices.clear();
+	vertices.push_back(Vector2D(150, 195));
+	vertices.push_back(Vector2D(75, 60));
+	vertices.push_back(Vector2D(180, -45));
+	vertices.push_back(Vector2D(60, -37));
+	vertices.push_back(Vector2D(0, -150));
+	vertices.push_back(Vector2D(-60, -37));
+	vertices.push_back(Vector2D(-180, -45));
+	vertices.push_back(Vector2D(-75, 60));
+	vertices.push_back(Vector2D(-150, 195));
+	vertices.push_back(Vector2D(0, 105));
+	_obstacles.push_back(new Obstacle(vertices, Vector2D(800, 500), new Vector2D(800, 500)));
 }
 
 const char* MultiAgentScene::getTitle()

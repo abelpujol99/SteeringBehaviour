@@ -20,6 +20,7 @@ private:
 
 	int _neighborCount = 0;
 	
+	void SetupObstacles();
 	
 public:
 	MultiAgentScene();
