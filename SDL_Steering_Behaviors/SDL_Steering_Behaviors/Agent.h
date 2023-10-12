@@ -46,6 +46,6 @@ public:
 	void setMass(float mass);
 	void setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 	virtual void update(float dtime, SDL_Event *event) = 0;
-	void draw();
+	virtual void draw();
 	bool loadSpriteTexture(char* filename, int num_frames=1);
 };
