@@ -4,7 +4,8 @@
 
 #include "SDL_SimpleApp.h"
 #include "SoloAgentScene.h"
-#include "MultiAgentScene.h"
+#include "WeightedBlendingMultiAgentScene.h"
+#include "PriorityListMultiAgentScene.h"
 
 
 using namespace std;
@@ -39,13 +40,22 @@ int main(int argc, char ** argv)
 			}
 			if (event.key.keysym.scancode == SDL_SCANCODE_2)
 			{
-				if (curr_scene->getTitle() != "SDL Steering Behaviors :: Multi Agent Demo")
+				if (curr_scene->getTitle() != "SDL Steering Behaviors :: Weighted Blending Multi Agent Demo")
 				{
 					delete(curr_scene);
-					curr_scene = new MultiAgentScene;
+					curr_scene = new WeightedBlendingMultiAgentScene;
 					app->setWindowTitle(curr_scene->getTitle());
 				}
 			}
+			/*if (event.key.keysym.scancode == SDL_SCANCODE_3)
+			{
+				if (curr_scene->getTitle() != "SDL Steering Behaviors :: Priority List Multi Agent Demo")
+				{
+					delete(curr_scene);
+					curr_scene = new PriorityListMultiAgentScene;
+					app->setWindowTitle(curr_scene->getTitle());
+				}
+			}*/
 			if ((event.key.keysym.scancode == SDL_SCANCODE_Q) || (event.key.keysym.scancode == SDL_SCANCODE_ESCAPE))
 			{
 				quit = true;

@@ -1,8 +1,13 @@
 ﻿#include "BehaviorPattern.h"
 
-BehaviorPattern::BehaviorPattern(std::vector<SteeringBehavior*> steeringBehaviors)
+
+BehaviorPattern::BehaviorPattern()
 {
-    _steeringBehaviors = steeringBehaviors;
+    currentId = instanceId++;
+}
+
+BehaviorPattern::BehaviorPattern(std::vector<SteeringBehavior*> steeringBehaviors) : _steeringBehaviors(steeringBehaviors)
+{
 }
 
 BehaviorPattern::~BehaviorPattern()

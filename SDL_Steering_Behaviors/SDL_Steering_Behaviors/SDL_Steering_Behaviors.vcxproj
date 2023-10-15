@@ -142,6 +142,7 @@
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="ObstacleAvoidanceBehavior.h" />
     <ClInclude Include="PriorityList.h" />
+    <ClInclude Include="PriorityListMultiAgentScene.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="MultiAgentScene.h" />
     <ClInclude Include="SeparationBehavior.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="utils.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="WeightedBlending.h" />
+    <ClInclude Include="WeightedBlendingMultiAgentScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
@@ -166,6 +168,7 @@
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="ObstacleAvoidanceBehavior.cpp" />
     <ClCompile Include="PriorityList.cpp" />
+    <ClCompile Include="PriorityListMultiAgentScene.cpp" />
     <ClCompile Include="SeparationBehavior.cpp" />
     <ClCompile Include="SoloAgentScene.cpp" />
     <ClCompile Include="SDL_SimpleApp.cpp" />
@@ -174,6 +177,7 @@
     <ClCompile Include="UniqueBehaviorAgent.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="WeightedBlending.cpp" />
+    <ClCompile Include="WeightedBlendingMultiAgentScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -8,6 +8,10 @@ Obstacle::Obstacle(std::vector<Vector2D> &vertices, Vector2D initialPosition, Ve
 	draw_sprite = false;
 }
 
+Obstacle::~Obstacle()
+{
+}
+
 bool Obstacle::IntersectSegment(Vector2D pos, Vector2D raycastVector, Vector2D& intersectionPoint, Vector2D& normalVector)
 {
 	bool collide = false;

@@ -8,8 +8,6 @@ private:
 
     std::vector<SteeringBehavior*> _steeringBehaviors;
 	
-	bool _seekBehavior;
-	
 	int _modeSelected;
     
 public:

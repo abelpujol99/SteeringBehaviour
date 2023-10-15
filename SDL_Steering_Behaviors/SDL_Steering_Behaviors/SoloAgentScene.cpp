@@ -15,14 +15,14 @@ SoloAgentScene::SoloAgentScene()
 	std::vector<float> weights {1, 0};
 	Agent* agent = new UniqueBehaviorAgent(steeringBehaviors, Vector2D(640,360), _target);
 	//agent->loadSpriteTexture("../res/soldier.png", 4);
-	agents.push_back(agent);
+	_agents.push_back(agent);
 }
 
 SoloAgentScene::~SoloAgentScene()
 {
-	for (int i = 0; i < (int)agents.size(); i++)
+	for (int i = 0; i < (int)_agents.size(); i++)
 	{
-		delete agents[i];
+		delete _agents[i];
 	}
 }
 
@@ -41,13 +41,13 @@ void SoloAgentScene::update(float dtime, SDL_Event *event)
 			break;
 	}
 	
-	agents[0]->update(dtime, event);
+	_agents[0]->update(dtime, event);
 }
 
 void SoloAgentScene::draw()
 {
 	draw_circle(TheApp::Instance()->getRenderer(), (int)_target->x, (int)_target->y, 15, 255, 0, 0, 255);
-	agents[0]->draw();
+	_agents[0]->draw();
 }
 
 const char* SoloAgentScene::getTitle()
