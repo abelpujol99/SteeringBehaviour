@@ -6,6 +6,7 @@
 
 class FlockingAgent : public Agent
 {
+	
 private:
 
 	std::vector<FlockingAgent*> _flockingAgents;

@@ -5,6 +5,8 @@
 #include "Scene.h"
 #include "Vector2D.h"
 
+class Scene;
+
 class SDL_SimpleApp
 {
 private:

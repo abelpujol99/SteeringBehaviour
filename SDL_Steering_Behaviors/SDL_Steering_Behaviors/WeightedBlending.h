@@ -2,7 +2,6 @@
 #include <vector>
 
 #include "BehaviorPattern.h"
-#include "Agent.h"
 
 class WeightedBlending : public BehaviorPattern
 {

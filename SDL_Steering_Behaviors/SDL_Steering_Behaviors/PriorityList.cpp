@@ -4,7 +4,6 @@
 PriorityList::PriorityList(std::vector<WeightedBlending> weightedBlendingGroups) :
                             _weightedBlendingGroups(weightedBlendingGroups)
 {
-    currentId = instanceId++;
 }
 
 PriorityList::~PriorityList(){}
