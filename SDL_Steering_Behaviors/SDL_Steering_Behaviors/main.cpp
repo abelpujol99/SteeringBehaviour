@@ -4,8 +4,8 @@
 
 #include "SDL_SimpleApp.h"
 #include "SoloAgentScene.h"
-#include "WeightedBlendingMultiAgentScene.h"
-#include "PriorityListMultiAgentScene.h"
+#include "WeightedBlendingScene.h"
+#include "PriorityListScene.h"
 
 
 using namespace std;
@@ -43,7 +43,7 @@ int main(int argc, char ** argv)
 				if (curr_scene->getTitle() != "SDL Steering Behaviors :: Weighted Blending Multi Agent Demo")
 				{
 					delete(curr_scene);
-					curr_scene = new WeightedBlendingMultiAgentScene;
+					curr_scene = new WeightedBlendingScene;
 					app->setWindowTitle(curr_scene->getTitle());
 				}
 			}

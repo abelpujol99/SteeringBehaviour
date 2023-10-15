@@ -1,17 +1,15 @@
 ﻿#pragma once
 #include "SteeringBehavior.h"
+#include "Agent.h"
 
 class BehaviorPattern
 {
 
 protected:
 
-    int instanceId;
     std::vector<SteeringBehavior*> _steeringBehaviors;
     
 public:
-
-    static int currentId;
 
     BehaviorPattern();
     BehaviorPattern(std::vector<SteeringBehavior*> steeringBehaviors);

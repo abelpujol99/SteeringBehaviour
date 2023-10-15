@@ -1,6 +1,5 @@
 #pragma once
 #include "Agent.h"
-#include <iostream>
 
 class Obstacle : public Agent
 {

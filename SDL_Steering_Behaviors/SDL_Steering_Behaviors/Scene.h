@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <SDL.h>
+#include "Agent.h"
 
 #define SEPARATION_WEIGHT 57 
 #define COHESION_WEIGHT 10
