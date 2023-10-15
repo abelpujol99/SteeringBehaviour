@@ -1,0 +1,14 @@
+Seleccionar escena amb els botons 1 i 2 (Un agent i múltiples agents respectivament)
+
+Escena 1:
+  - Click esquerra: Colocar target
+  - Click dret: Canviar entre Seek / Flee
+
+Escena 2
+  - Click esquerra: Spawnejar agent
+
+
+
+Notes:
+- Els obstacles a l'escena amb multiples agents estan programats de forma dinàmica.
+- L'escena on s'utilitza priority list té un error i per tant està deshabilitada.
