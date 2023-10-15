@@ -4,7 +4,7 @@ FlockingAgent::FlockingAgent(BehaviorPattern* behaviorPattern, Vector2D* target,
                 _averageNeighborPosition(new Vector2D(0)),
                 _separationDirection(new Vector2D(0)),
                 _averageNeighborVelocity(new Vector2D(0)),
-                _behaviorPattern(behaviorPattern),
+                _behaviorPattern(std::move(behaviorPattern)),
                 Agent(initialPosition, target)
 {}
 

@@ -4,6 +4,8 @@ WeightedBlending::WeightedBlending(std::vector<SteeringBehavior*> steeringBehavi
                     BehaviorPattern(steeringBehaviors),
                     _weights(weights){}
 
+WeightedBlending::~WeightedBlending(){}
+
 Vector2D WeightedBlending::CalculateForce(Agent* agent, Vector2D target, float dtime)
 {
     Vector2D force = Vector2D(0,0);
@@ -15,17 +17,13 @@ Vector2D WeightedBlending::CalculateForce(Agent* agent, Vector2D target, float d
     return force;
 }
 
-Vector2D WeightedBlending::CalculateForce(std::vector<FlockingAgent*> flockingAgents, Agent* agent, Vector2D target,
-    float dtime)
+std::vector<SteeringBehavior*> WeightedBlending::GetSteeringBehaviors()
 {
-    Vector2D force = Vector2D(0,0);
-
-    for (int i = 0; i < _steeringBehaviors.size(); ++i)
-    {
-        force += _steeringBehaviors[i]->CalculateForces(agent, target, dtime) * _weights[i];
-    }    
-    return force;
+    return _steeringBehaviors;
 }
 
-
+std::vector<float> WeightedBlending::GetWeights()
+{
+    return _weights;
+}
 
