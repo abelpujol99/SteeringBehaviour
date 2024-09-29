@@ -134,22 +134,50 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Agent.h" />
+    <ClInclude Include="AlignmentBehavior.h" />
+    <ClInclude Include="BehaviorPattern.h" />
+    <ClInclude Include="CohesionBehavior.h" />
+    <ClInclude Include="FleeBehavior.h" />
+    <ClInclude Include="FlockingAgent.h" />
+    <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="ObstacleAvoidanceBehavior.h" />
+    <ClInclude Include="PriorityList.h" />
+    <ClInclude Include="PriorityListScene.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneFlee.h" />
-    <ClInclude Include="SceneSeek.h" />
+    <ClInclude Include="MultiAgentScene.h" />
+    <ClInclude Include="SeparationBehavior.h" />
+    <ClInclude Include="SoloAgentScene.h" />
     <ClInclude Include="SDL_SimpleApp.h" />
+    <ClInclude Include="SeekBehavior.h" />
     <ClInclude Include="SteeringBehavior.h" />
+    <ClInclude Include="UniqueBehaviorAgent.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="Vector2D.h" />
+    <ClInclude Include="WeightedBlending.h" />
+    <ClInclude Include="WeightedBlendingScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
+    <ClCompile Include="AlignmentBehavior.cpp" />
+    <ClCompile Include="BehaviorPattern.cpp" />
+    <ClCompile Include="CohesionBehavior.cpp" />
+    <ClCompile Include="FleeBehavior.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="SceneFlee.cpp" />
-    <ClCompile Include="SceneSeek.cpp" />
+    <ClCompile Include="MultiAgentScene.cpp" />
+    <ClCompile Include="FlockingAgent.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="ObstacleAvoidanceBehavior.cpp" />
+    <ClCompile Include="PriorityList.cpp" />
+    <ClCompile Include="PriorityListScene.cpp" />
+    <ClCompile Include="SeparationBehavior.cpp" />
+    <ClCompile Include="SoloAgentScene.cpp" />
     <ClCompile Include="SDL_SimpleApp.cpp" />
+    <ClCompile Include="SeekBehavior.cpp" />
     <ClCompile Include="SteeringBehavior.cpp" />
+    <ClCompile Include="UniqueBehaviorAgent.cpp" />
     <ClCompile Include="utils.cpp" />
+    <ClCompile Include="WeightedBlending.cpp" />
+    <ClCompile Include="WeightedBlendingScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

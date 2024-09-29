@@ -1,19 +1,18 @@
 #pragma once
 #include <vector>
 #include "Scene.h"
-#include "Agent.h"
 
-class SceneFlee :
-	public Scene
+class SoloAgentScene : public Scene
 {
 public:
-	SceneFlee();
-	~SceneFlee();
+	SoloAgentScene();
+	~SoloAgentScene();
 	void update(float dtime, SDL_Event *event);
 	void draw();
 	const char* getTitle();
+
 private:
-	std::vector<Agent*> agents;
-	Vector2D target;
+	std::vector<Agent*> _agents;
+	Vector2D* _target;
 };
 

@@ -6,14 +6,11 @@ class Agent;
 
 class SteeringBehavior
 {
+	
 public:
 	SteeringBehavior();
-	~SteeringBehavior();
+	virtual ~SteeringBehavior();
 
-	Vector2D Seek(Agent *agent, Vector2D target, float dtime);
-	Vector2D Seek(Agent *agent, Agent *target, float dtime);
-	Vector2D Flee(Agent *agent, Vector2D target, float dtime);
-	Vector2D Flee(Agent *agent, Agent *target, float dtime);
-	//etc...
-
+	virtual Vector2D CalculateForces(Agent *agent, Vector2D target, float dtime) = 0;
+	virtual Vector2D CalculateForces(Agent *agent, Agent *target, float dtime) = 0;
 };
